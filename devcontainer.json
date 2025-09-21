@@ -1,16 +1,20 @@
 {
   "name": "Data-Models Workshop",
-  "features": {
-    "ghcr.io/devcontainers/features/python:1": { "version": "3.12" }
-  },
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
   "postCreateCommand": "python -m venv .venv && . .venv/bin/activate && pip install --upgrade pip && pip install -r requirements.txt && python -m ipykernel install --user --name workshop --display-name 'Python (workshop)'",
   "customizations": {
     "vscode": {
-      "extensions": [ "ms-python.python", "ms-toolsai.jupyter" ],
+      "extensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter"
+      ],
       "settings": {
         "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
-        "jupyter.jupyterServerType": "local"
+        "jupyter.jupyterServerType": "local",
+        "python.terminal.activateEnvironment": true
       }
     }
-  }
+  },
+  "waitFor": "postCreateCommand",
+  "remoteUser": "vscode"
 }
